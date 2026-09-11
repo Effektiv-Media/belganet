@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Sparkles, ShieldCheck, BadgePercent, Clock, Phone, CheckCircle2 } from "lucide-react";
 import type { Usp } from "@/content/types";
 
@@ -20,13 +17,9 @@ export function LandingUsps({ usps }: { usps: Usp[] }) {
           {usps.map((usp, i) => {
             const Icon = ICONS[i % ICONS.length]!;
             return (
-              <motion.div
+              <div
                 key={usp.title}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.55, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] }}
-                className="bg-background rounded-2xl p-8 border border-border hover:border-brand-amber/40 hover:shadow-xl hover:shadow-brand-amber/10 transition-all duration-300 group"
+                className="reveal bg-background rounded-2xl p-8 border border-border hover:border-brand-amber/40 hover:shadow-xl hover:shadow-brand-amber/10 transition-all duration-300 group"
               >
                 <div className="w-14 h-14 rounded-2xl bg-brand-navy flex items-center justify-center mb-6 group-hover:bg-brand-amber transition-colors duration-300">
                   <Icon
@@ -37,7 +30,7 @@ export function LandingUsps({ usps }: { usps: Usp[] }) {
                 </div>
                 <h3 className="font-serif text-xl font-bold text-brand-navy mb-3">{usp.title}</h3>
                 <p className="text-muted-foreground leading-relaxed font-sans text-sm">{usp.desc}</p>
-              </motion.div>
+              </div>
             );
           })}
         </div>

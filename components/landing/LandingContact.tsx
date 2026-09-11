@@ -1,15 +1,40 @@
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { BUSINESS } from "@/lib/site";
 import { ContactForm } from "@/components/shared/ContactForm";
+import type { RutEligibility } from "@/content/types";
 
-export function LandingContact({ keyword, area }: { keyword: string; area: string }) {
+const RUT_NOTE: Record<RutEligibility, { title: string; text: string }> = {
+  yes: {
+    title: "RUT-avdrag",
+    text: "Privatpersoner kan använda RUT-avdrag och betala halva arbetskostnaden. Vi drar av det direkt på fakturan och sköter ansökan åt dig.",
+  },
+  partial: {
+    title: "RUT-avdrag",
+    text: "Vid privat renovering av din egen bostad kan RUT-avdrag ofta användas på slutstädningen. Vi hjälper dig kontrollera vad som gäller.",
+  },
+  no: {
+    title: "Tydligt avtal",
+    text: "Du får en tydlig offert och, vid löpande uppdrag, ett avtal med fast pris. För företag är städkostnaden avdragsgill i verksamheten.",
+  },
+};
+
+export function LandingContact({
+  keyword,
+  area,
+  rut,
+}: {
+  keyword: string;
+  area: string;
+  rut: RutEligibility;
+}) {
+  const note = RUT_NOTE[rut];
   const contactItems = [
     { icon: Phone, label: "Telefon", value: BUSINESS.phone, href: BUSINESS.phoneHref },
     { icon: Mail, label: "E-post", value: BUSINESS.email, href: BUSINESS.emailHref },
     {
       icon: MapPin,
       label: "Verksamhetsområde",
-      value: BUSINESS.areaServedNames.join(", ").replace(/, ([^,]*)$/, " & $1"),
+      value: `${area} med omnejd – hela ${BUSINESS.areaServedText}`,
       href: null,
     },
     { icon: Clock, label: "Öppettider", value: BUSINESS.openingHours, href: null },
@@ -59,12 +84,9 @@ export function LandingContact({ keyword, area }: { keyword: string; area: strin
               </ul>
               <div className="mt-10 p-4 rounded-xl bg-brand-amber/10 border border-brand-amber/25">
                 <div className="text-brand-amber font-bold text-sm uppercase tracking-wider mb-1 font-sans">
-                  RUT-avdrag
+                  {note.title}
                 </div>
-                <p className="text-white/65 text-xs leading-relaxed font-sans">
-                  Privatpersoner kan använda RUT-avdrag och betala halva priset. Jag
-                  sköter ansökan åt dig.
-                </p>
+                <p className="text-white/65 text-xs leading-relaxed font-sans">{note.text}</p>
               </div>
             </div>
           </div>

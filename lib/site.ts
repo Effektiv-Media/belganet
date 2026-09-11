@@ -2,9 +2,22 @@
  * Single source of truth for the business's NAP (Name/Address/Phone) and
  * other site-wide constants. Pulled verbatim from the live original site.
  */
+import { ORTER } from "@/content/orter";
 
 export const SITE_NAME = "Belganet Städ och Allservice";
+/** Short brand used in <title> suffixes to keep titles under ~60 chars. */
+export const SITE_SHORT_NAME = "Belganet Städ";
 export const SITE_URL = "https://www.belganetstadochallservice.se";
+
+/**
+ * Date of the last substantive content update across the service/ort pages.
+ * Drives sitemap `lastmod`. Bump it when page copy actually changes — never
+ * set it to "now", or Google learns to ignore lastmod entirely.
+ */
+export const CONTENT_UPDATED = "2026-09-11";
+
+/** Every town the business serves — the same 10 the site has pages for. */
+export const AREA_SERVED_NAMES: string[] = ORTER.map((o) => o.name);
 
 export const BUSINESS = {
   name: SITE_NAME,
@@ -12,13 +25,17 @@ export const BUSINESS = {
   founder: "Angelica",
   phone: "+46 73 823 35 31",
   phoneHref: "tel:+46738233531",
+  // TODO(client): a domain address (e.g. info@belganetstadochallservice.se)
+  // is a stronger trust signal than Gmail — swap once it exists.
   email: "angelica88lundberg@gmail.com",
   emailHref: "mailto:angelica88lundberg@gmail.com",
-  // No street address is published anywhere on the current site. Emitting a
-  // fabricated one would be worse for local SEO than omitting it — ask the
-  // client for their registered business address (and org. number) to add
-  // a full postalAddress + geo to the LocalBusiness JSON-LD.
-  areaServedNames: ["Ronneby", "Karlskrona", "Växjö", "Kalmar"],
+  // TODO(client): no street address or organisationsnummer is published
+  // anywhere. Emitting a fabricated one would be worse for local SEO than
+  // omitting it — add a full postalAddress + geo to the LocalBusiness
+  // JSON-LD once the client shares their registered address.
+  areaServedNames: AREA_SERVED_NAMES,
+  /** Human-readable coverage, used in contact boxes and footers. */
+  areaServedText: "Blekinge, Kalmar län och Växjö",
   openingHours: "Mån–Fre 07:00–18:00",
   openingHoursSpec: {
     dayOfWeek: [
@@ -35,15 +52,16 @@ export const BUSINESS = {
 } as const;
 
 export const SOCIAL_LINKS: string[] = [
-  // No social profiles are linked from the current site. Add Facebook/
-  // Instagram/Google Business Profile URLs here (feeds `sameAs` in JSON-LD)
-  // once the client shares them.
+  // TODO(client): no social profiles are linked from the current site. Add
+  // Facebook/Instagram/Google Business Profile URLs here — they feed
+  // `sameAs` in JSON-LD and the footer icons render only when present.
 ];
 
+/** Crawlable primary navigation, shared by every header. */
 export const NAV_LINKS = [
-  { href: "/#section-1", label: "Hem" },
-  { href: "/#section-2", label: "Varför oss" },
-  { href: "/#section-3", label: "Tjänster" },
+  { href: "/tjanster", label: "Tjänster" },
+  { href: "/omraden", label: "Områden" },
+  { href: "/guider", label: "Guider" },
   { href: "/#section-4", label: "Om oss" },
   { href: "/#section-5", label: "Kontakt" },
 ] as const;

@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { LandingFooter } from "@/components/landing/LandingFooter";
+import { Footer } from "@/components/layout/Footer";
 import { buildMetadata } from "@/lib/seo";
 import { BUSINESS, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
   title: "Integritetspolicy",
-  description: `Så behandlar ${SITE_NAME} dina personuppgifter när du kontaktar oss eller anlitar våra tjänster.`,
+  description: `Så behandlar ${SITE_NAME} dina personuppgifter när du kontaktar oss via formuläret eller anlitar oss – och vilka rättigheter du har.`,
   path: "/integritetspolicy",
 });
 
 export default function IntegritetspolicyPage() {
   return (
     <div className="min-h-screen bg-background">
-      <PageHeader navItems={[]} ctaHref="/#contact-form" />
+      <PageHeader />
       <main className="pt-32 pb-24">
         <article className="max-w-2xl mx-auto px-6">
           <span className="section-heading-eyebrow">Integritetspolicy</span>
@@ -94,7 +94,7 @@ export default function IntegritetspolicyPage() {
           </div>
         </article>
       </main>
-      <LandingFooter />
+      <Footer />
     </div>
   );
 }

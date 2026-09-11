@@ -87,7 +87,7 @@ export const ORTER: Ort[] = [
     name: "Sölvesborg",
     kommun: "Sölvesborgs kommun",
     lan: "Blekinge län",
-    districts: ["Gasverksgatan", "Sölve"],
+    districts: ["Mjällby", "Hällevik"],
     nearby: [
       { name: "Karlshamn", km: 20 },
       { name: "Karlskrona", km: 55 },

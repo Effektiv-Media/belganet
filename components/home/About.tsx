@@ -38,7 +38,8 @@ export function About() {
               Jag på Belganet Städ och Allservice är ett lokalt städföretag grundat
               av Angelica, med en passion för ordning, renlighet och att hjälpa
               människor i vardagen. Jag betjänar privatpersoner och företag i
-              Ronneby, Karlskrona, Växjö och Kalmar.
+              Ronneby, Karlskrona, Växjö och Kalmar – och fler orter i Blekinge,
+              Kalmar och Kronobergs län.
             </p>
             <p className="mt-4 text-white/70 leading-relaxed font-sans">
               Min styrka är min bredd – utöver professionell städning erbjuder jag

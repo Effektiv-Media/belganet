@@ -4,8 +4,9 @@ import { Phone } from "lucide-react";
 import { BUSINESS, NAV_LINKS } from "@/lib/site";
 import { MobileNav } from "./MobileNav";
 
-/** The homepage header — fixed, with a top contact bar and anchor nav to the
- * homepage's own sections. Pixel-matches the original site's header. */
+/** The homepage header — fixed, with a top contact bar and the site-wide
+ * crawlable navigation (hubs + homepage sections). Visual design matches
+ * the original site's header. */
 export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full bg-brand-navy/80 backdrop-blur-sm border-b border-white/5">

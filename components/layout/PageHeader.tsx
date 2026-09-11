@@ -4,29 +4,23 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
-export interface PageHeaderNavItem {
-  id: string;
-  label: string;
-}
+import { NAV_LINKS } from "@/lib/site";
 
 interface PageHeaderProps {
-  navItems: PageHeaderNavItem[];
   /** Element id on the current page to scroll to when clicking "Boka
    * städning". Ignored if `ctaHref` is provided. */
   ctaSectionId?: string;
-  /** Use instead of `ctaSectionId` on pages with no on-page contact section
+  /** Use instead of `ctaSectionId` on pages with no on-page contact form
    * (index/hub pages) — renders the CTA as a normal link instead. */
   ctaHref?: string;
 }
 
 /**
- * The header used on every page other than the homepage (landing pages, ort
- * hubs, guides). The logo returns to "/"; nav items scroll to sections
- * within the current page — matching the original landing-page header,
- * which used the same in-page scroll-button pattern.
+ * The header used on every page other than the homepage. Navigation is
+ * real links to the site's hubs (crawlable, unlike the in-page scroll
+ * buttons this used to have); only the CTA scrolls within the page.
  */
-export function PageHeader({ navItems, ctaSectionId, ctaHref }: PageHeaderProps) {
+export function PageHeader({ ctaSectionId, ctaHref = "/#contact-form" }: PageHeaderProps) {
   const [open, setOpen] = useState(false);
 
   function scrollTo(id: string) {
@@ -35,14 +29,14 @@ export function PageHeader({ navItems, ctaSectionId, ctaHref }: PageHeaderProps)
   }
 
   const CtaButton = ({ className }: { className: string }) =>
-    ctaHref ? (
+    ctaSectionId ? (
+      <button type="button" onClick={() => scrollTo(ctaSectionId)} className={className}>
+        Boka städning
+      </button>
+    ) : (
       <Link href={ctaHref} className={className} onClick={() => setOpen(false)}>
         Boka städning
       </Link>
-    ) : (
-      <button type="button" onClick={() => scrollTo(ctaSectionId!)} className={className}>
-        Boka städning
-      </button>
     );
 
   return (
@@ -58,16 +52,15 @@ export function PageHeader({ navItems, ctaSectionId, ctaHref }: PageHeaderProps)
             priority
           />
         </Link>
-        <nav className="hidden md:flex items-center gap-6" aria-label="Sidnavigation">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => scrollTo(item.id)}
+        <nav className="hidden md:flex items-center gap-6" aria-label="Huvudnavigation">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
               className="text-sm font-medium text-white/80 hover:text-white transition-colors uppercase tracking-wider"
             >
-              {item.label}
-            </button>
+              {link.label}
+            </Link>
           ))}
           <CtaButton className="ml-2 px-5 py-2.5 bg-brand-amber text-white text-sm font-bold uppercase tracking-wider rounded-lg hover:bg-brand-amber-light transition-all hover:scale-105 active:scale-95" />
         </nav>
@@ -84,15 +77,15 @@ export function PageHeader({ navItems, ctaSectionId, ctaHref }: PageHeaderProps)
         {open && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-brand-navy border-t border-white/10 shadow-xl">
             <nav aria-label="Mobilnavigation" className="flex flex-col px-6 py-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => scrollTo(item.id)}
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
                   className="py-3 text-left text-sm font-medium text-white/80 hover:text-white uppercase tracking-wider border-b border-white/5 last:border-0"
                 >
-                  {item.label}
-                </button>
+                  {link.label}
+                </Link>
               ))}
               <CtaButton className="mt-4 px-5 py-2.5 bg-brand-amber text-white text-sm font-bold uppercase tracking-wider rounded-lg text-center" />
             </nav>

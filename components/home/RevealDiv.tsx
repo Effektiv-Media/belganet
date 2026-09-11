@@ -1,31 +1,19 @@
-"use client";
-
-import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
 /**
- * Small scroll-reveal wrapper matching the original site's fade-up-on-scroll
- * effect (opacity 0 -> 1, translateY 28-36px -> 0). Kept as a thin client
- * leaf component so section wrappers themselves can stay server components.
+ * Scroll-reveal wrapper (fade-up on scroll). CSS-only via the `.reveal`
+ * class in globals.css — a server component with zero JavaScript, and the
+ * content is visible even where scroll-driven animations aren't supported.
+ * `delay` is accepted for API compatibility; scroll-linked animations are
+ * driven by position, so staggering happens naturally.
  */
 export function RevealDiv({
   children,
-  delay = 0,
   className,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
 }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={className ? `reveal ${className}` : "reveal"}>{children}</div>;
 }

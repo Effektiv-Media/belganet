@@ -5,13 +5,28 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   async redirects() {
+    // Every rule is permanent (308) and lands on the final URL in ONE hop —
+    // chained redirects leak link equity and slow down crawling.
     return [
-      // Legacy slugs from the original v0 deployment's sitemap — keep them
-      // resolving with a permanent redirect instead of 404ing, and steer to
-      // the higher-search-volume "städfirma" keyword instead of "städföretag".
+      // Original v0 URLs used "städföretag"; the page moved to the
+      // higher-volume "städfirma" keyword under the new /tjanster structure.
       {
-        source: "/landningssidor/stadforetag-:ort",
-        destination: "/landningssidor/stadfirma-:ort",
+        source: "/landningssidor/stadforetag-:ort([a-z]+)",
+        destination: "/tjanster/stadfirma/:ort",
+        permanent: true,
+      },
+      // /landningssidor/{service}-{ort} → /tjanster/{service}/{ort}.
+      // Service and town slugs never contain hyphens, so the split is exact.
+      {
+        source: "/landningssidor/:service([a-z]+)-:ort([a-z]+)",
+        destination: "/tjanster/:service/:ort",
+        permanent: true,
+      },
+      { source: "/landningssidor", destination: "/tjanster", permanent: true },
+      // Typo in an earlier guide slug.
+      {
+        source: "/guider/graskllippning-pris",
+        destination: "/guider/grasklippning-pris",
         permanent: true,
       },
     ];

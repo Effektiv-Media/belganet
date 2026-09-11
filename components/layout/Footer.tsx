@@ -1,17 +1,32 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
-import { BUSINESS, SITE_NAME } from "@/lib/site";
+import { Phone, Mail, MapPin, Facebook, Instagram, Globe } from "lucide-react";
+import { BUSINESS, SITE_NAME, SOCIAL_LINKS } from "@/lib/site";
+import { SERVICES } from "@/content/services";
+import { ORTER } from "@/content/orter";
+import {
+  guidesIndexPath,
+  orterIndexPath,
+  ortPath,
+  servicePath,
+  servicesIndexPath,
+} from "@/lib/routes";
 
-const SERVICE_FOOTER_LINKS = [
-  { slug: "hemstad", label: "Hemstäd" },
-  { slug: "flyttstad", label: "Flyttstäd" },
-  { slug: "kontorsstad", label: "Kontorsstäd" },
-  { slug: "fonsterputs", label: "Fönsterputs" },
-  { slug: "tradgardsskotsel", label: "Trädgårdsservice" },
-  { slug: "stadfirma", label: "Allservice" },
-];
+const linkClass =
+  "text-white/50 text-sm hover:text-brand-amber transition-colors duration-200 font-sans";
+const headingClass = "text-white font-bold uppercase tracking-wider text-xs mb-5 font-sans";
 
+function socialIcon(url: string) {
+  if (url.includes("facebook.")) return { Icon: Facebook, label: "Besök vår Facebook-sida" };
+  if (url.includes("instagram.")) return { Icon: Instagram, label: "Besök vår Instagram-sida" };
+  return { Icon: Globe, label: "Besök vår profil" };
+}
+
+/**
+ * Site-wide footer, used on every page. Besides contact details it is the
+ * main crawl path to every service hub and town hub, so no hub depends on
+ * in-content links alone.
+ */
 export function Footer() {
   const year = new Date().getFullYear();
 
@@ -19,8 +34,8 @@ export function Footer() {
     <footer className="bg-brand-navy-dark text-white" role="contentinfo">
       <div className="h-px bg-linear-to-r from-transparent via-brand-amber to-transparent" />
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          <div className="lg:col-span-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
+          <div>
             <div className="mb-5">
               <Image
                 src="/logo.jpg"
@@ -35,105 +50,113 @@ export function Footer() {
             </div>
             <p className="text-white/50 text-sm leading-relaxed mb-6 font-sans">
               Vi erbjuder professionell städning och allservice för privatpersoner och
-              företag i Sydsverige. Alltid med kvalitet och omsorg i fokus.
+              företag i {BUSINESS.areaServedText}. Alltid med kvalitet och omsorg i fokus.
             </p>
-            <div className="flex gap-3">
-              {/* Placeholder profile links pending real social accounts from the client. */}
-              <a
-                href="https://facebook.com"
-                aria-label="Besök vår Facebook-sida"
-                className="w-10 h-10 rounded-xl bg-white/8 flex items-center justify-center hover:bg-brand-amber hover:text-brand-navy transition-all duration-300 hover:scale-110 text-white"
-              >
-                <Facebook size={16} aria-hidden="true" />
-              </a>
-              <a
-                href="https://instagram.com"
-                aria-label="Besök vår Instagram-sida"
-                className="w-10 h-10 rounded-xl bg-white/8 flex items-center justify-center hover:bg-brand-amber hover:text-brand-navy transition-all duration-300 hover:scale-110 text-white"
-              >
-                <Instagram size={16} aria-hidden="true" />
-              </a>
-            </div>
+            {SOCIAL_LINKS.length > 0 && (
+              <div className="flex gap-3">
+                {SOCIAL_LINKS.map((url) => {
+                  const { Icon, label } = socialIcon(url);
+                  return (
+                    <a
+                      key={url}
+                      href={url}
+                      aria-label={label}
+                      rel="noopener"
+                      className="w-10 h-10 rounded-xl bg-white/8 flex items-center justify-center hover:bg-brand-amber hover:text-brand-navy transition-all duration-300 hover:scale-110 text-white"
+                    >
+                      <Icon size={16} aria-hidden="true" />
+                    </a>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
-          <div>
-            <h3 className="text-white font-bold uppercase tracking-wider text-xs mb-5 font-sans">
-              Navigation
-            </h3>
+          <nav aria-label="Tjänster i sidfoten">
+            <h3 className={headingClass}>Tjänster</h3>
             <ul className="space-y-3" role="list">
-              <li>
-                <Link href="/" className="text-white/50 text-sm hover:text-brand-amber transition-colors duration-200 font-sans">
-                  Hem
-                </Link>
-              </li>
-              <li>
-                <Link href="/landningssidor" className="text-white/50 text-sm hover:text-brand-amber transition-colors duration-200 font-sans">
-                  Landningssidor
-                </Link>
-              </li>
-              <li>
-                <Link href="/omraden" className="text-white/50 text-sm hover:text-brand-amber transition-colors duration-200 font-sans">
-                  Områden
-                </Link>
-              </li>
-              <li>
-                <Link href="/guider" className="text-white/50 text-sm hover:text-brand-amber transition-colors duration-200 font-sans">
-                  Guider
-                </Link>
-              </li>
-              <li>
-                <Link href="/#section-5" className="text-white/50 text-sm hover:text-brand-amber transition-colors duration-200 font-sans">
-                  Kontakt
-                </Link>
-              </li>
-              <li>
-                <Link href="/integritetspolicy" className="text-white/50 text-sm hover:text-brand-amber transition-colors duration-200 font-sans">
-                  Integritetspolicy
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-white font-bold uppercase tracking-wider text-xs mb-5 font-sans">
-              Tjänster
-            </h3>
-            <ul className="space-y-3" role="list">
-              {SERVICE_FOOTER_LINKS.map((s) => (
+              {SERVICES.map((s) => (
                 <li key={s.slug}>
-                  <Link
-                    href={`/landningssidor/${s.slug}-ronneby`}
-                    className="text-white/50 text-sm hover:text-brand-amber transition-colors duration-200 font-sans"
-                  >
-                    {s.label}
+                  <Link href={servicePath(s.slug)} className={linkClass}>
+                    {s.keyword}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
+
+          <nav aria-label="Orter i sidfoten">
+            <h3 className={headingClass}>Orter</h3>
+            <ul className="space-y-3" role="list">
+              {ORTER.map((o) => (
+                <li key={o.slug}>
+                  <Link href={ortPath(o.slug)} className={linkClass}>
+                    Städning i {o.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Navigation i sidfoten">
+            <h3 className={headingClass}>Navigation</h3>
+            <ul className="space-y-3" role="list">
+              <li>
+                <Link href="/" className={linkClass}>
+                  Hem
+                </Link>
+              </li>
+              <li>
+                <Link href={servicesIndexPath()} className={linkClass}>
+                  Alla tjänster
+                </Link>
+              </li>
+              <li>
+                <Link href={orterIndexPath()} className={linkClass}>
+                  Områden
+                </Link>
+              </li>
+              <li>
+                <Link href={guidesIndexPath()} className={linkClass}>
+                  Guider &amp; priser
+                </Link>
+              </li>
+              <li>
+                <Link href="/#section-4" className={linkClass}>
+                  Om oss
+                </Link>
+              </li>
+              <li>
+                <Link href="/#section-5" className={linkClass}>
+                  Kontakt
+                </Link>
+              </li>
+              <li>
+                <Link href="/integritetspolicy" className={linkClass}>
+                  Integritetspolicy
+                </Link>
+              </li>
+            </ul>
+          </nav>
 
           <div>
-            <h3 className="text-white font-bold uppercase tracking-wider text-xs mb-5 font-sans">
-              Kontakt
-            </h3>
+            <h3 className={headingClass}>Kontakt</h3>
             <ul className="space-y-4" role="list">
               <li className="flex items-start gap-3">
                 <Phone size={15} className="text-brand-amber shrink-0 mt-0.5" aria-hidden="true" />
-                <a href={BUSINESS.phoneHref} className="text-white/50 text-sm hover:text-brand-amber transition-colors duration-200 font-sans">
+                <a href={BUSINESS.phoneHref} className={linkClass}>
                   {BUSINESS.phone}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Mail size={15} className="text-brand-amber shrink-0 mt-0.5" aria-hidden="true" />
-                <a href={BUSINESS.emailHref} className="text-white/50 text-sm hover:text-brand-amber transition-colors duration-200 font-sans">
+                <a href={BUSINESS.emailHref} className={`${linkClass} break-all`}>
                   {BUSINESS.email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={15} className="text-brand-amber shrink-0 mt-0.5" aria-hidden="true" />
-                <span className="text-white/50 text-sm font-sans">
-                  {BUSINESS.areaServedNames.join(", ")}
-                </span>
+                <span className="text-white/50 text-sm font-sans">{BUSINESS.areaServedText}</span>
               </li>
             </ul>
             <Link

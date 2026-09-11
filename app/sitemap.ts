@@ -1,45 +1,43 @@
 import type { MetadataRoute } from "next";
 import { ALL_LANDING_PAGES } from "@/content/landing";
 import { ORTER } from "@/content/orter";
+import { SERVICES } from "@/content/services";
 import { GUIDES } from "@/content/guides";
-import { SITE_URL } from "@/lib/site";
+import { CONTENT_UPDATED, SITE_URL } from "@/lib/site";
+import {
+  guidePath,
+  guidesIndexPath,
+  lpPath,
+  ortPath,
+  orterIndexPath,
+  servicePath,
+  servicesIndexPath,
+} from "@/lib/routes";
 
 /**
- * Full sitemap on the correct domain. The original site's sitemap.xml
- * pointed at "https://belganet.se" — a different, dead domain — so every
- * submitted URL 404'd. Every URL here resolves under the real live domain.
+ * Every indexable URL, on the real domain. Rules:
+ * - `lastModified` comes from real content dates, never `new Date()` — a
+ *   lastmod that changes on every deploy teaches Google to ignore it.
+ * - noindexed landing pages (low-demand service × ort combos) are left out;
+ *   a sitemap should only list pages you want indexed.
+ * - `priority` / `changeFrequency` are omitted: Google ignores both.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  const url = (path: string) => `${SITE_URL}${path}`;
+  const latestGuideUpdate = GUIDES.map((g) => g.updated).sort().at(-1) ?? CONTENT_UPDATED;
 
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/`, lastModified: now, changeFrequency: "monthly", priority: 1.0 },
-    { url: `${SITE_URL}/landningssidor`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${SITE_URL}/omraden`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${SITE_URL}/guider`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${SITE_URL}/integritetspolicy`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
+  return [
+    { url: url("/"), lastModified: CONTENT_UPDATED },
+    { url: url(servicesIndexPath()), lastModified: CONTENT_UPDATED },
+    ...SERVICES.map((s) => ({ url: url(servicePath(s.slug)), lastModified: CONTENT_UPDATED })),
+    { url: url(orterIndexPath()), lastModified: CONTENT_UPDATED },
+    ...ORTER.map((o) => ({ url: url(ortPath(o.slug)), lastModified: CONTENT_UPDATED })),
+    ...ALL_LANDING_PAGES.filter((p) => p.indexed).map((p) => ({
+      url: url(lpPath(p.serviceSlug, p.ortSlug)),
+      lastModified: CONTENT_UPDATED,
+    })),
+    { url: url(guidesIndexPath()), lastModified: latestGuideUpdate },
+    ...GUIDES.map((g) => ({ url: url(guidePath(g.slug)), lastModified: g.updated })),
+    { url: url("/integritetspolicy"), lastModified: CONTENT_UPDATED },
   ];
-
-  const ortRoutes: MetadataRoute.Sitemap = ORTER.map((ort) => ({
-    url: `${SITE_URL}/omraden/${ort.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.9,
-  }));
-
-  const landingRoutes: MetadataRoute.Sitemap = ALL_LANDING_PAGES.map((p) => ({
-    url: `${SITE_URL}/landningssidor/${p.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  const guideRoutes: MetadataRoute.Sitemap = GUIDES.map((g) => ({
-    url: `${SITE_URL}/guider/${g.slug}`,
-    lastModified: now,
-    changeFrequency: "yearly",
-    priority: 0.7,
-  }));
-
-  return [...staticRoutes, ...ortRoutes, ...landingRoutes, ...guideRoutes];
 }

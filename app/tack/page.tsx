@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { LandingFooter } from "@/components/landing/LandingFooter";
+import { Footer } from "@/components/layout/Footer";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Tack för din förfrågan",
   description: "Tack för din förfrågan till Belganet Städ och Allservice. Vi återkommer inom 24 timmar.",
   path: "/tack",
+  // A conversion-only page: no search value, so keep it out of the index.
+  noindex: true,
 });
 
 /**
@@ -20,7 +22,7 @@ export const metadata: Metadata = buildMetadata({
 export default function TackPage() {
   return (
     <div className="min-h-screen bg-background">
-      <PageHeader navItems={[]} ctaHref="/#contact-form" />
+      <PageHeader />
       <main className="pt-40 pb-24">
         <div className="max-w-lg mx-auto px-6 text-center">
           <div className="w-20 h-20 rounded-full bg-brand-amber/15 flex items-center justify-center mx-auto mb-6">
@@ -41,7 +43,7 @@ export default function TackPage() {
           </Link>
         </div>
       </main>
-      <LandingFooter />
+      <Footer />
     </div>
   );
 }

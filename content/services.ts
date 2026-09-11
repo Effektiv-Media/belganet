@@ -33,6 +33,14 @@ export const SERVICES: Service[] = [
     keywordLower: "städfirma",
     altKeyword: "Städföretag",
     icon: Sparkles,
+    rut: "yes",
+    hubIntro:
+      "Belganet Städ och Allservice är en lokal städfirma för hela Blekinge, Kalmar län och Växjö. Vi samlar hemstäd, flyttstäd, kontorsstäd, fönsterputs och trädgårdsskötsel hos en och samma leverantör – med en fast kontaktperson, miljögodkända medel och RUT-avdrag direkt på fakturan för privatpersoner.",
+    metaTemplates: [
+      "Städfirma i {area} för hem, kontor och trädgård. Hemstäd, flyttstäd och fönsterputs med RUT-avdrag direkt på fakturan. Begär en kostnadsfri offert idag!",
+      "Söker du ett städföretag i {area} eller {district}? Vi sköter hemstäd, flyttstäd, kontorsstäd och fönsterputs med fast kontaktperson. Få offert inom 24 h.",
+      "Lokal städfirma i {area} – ett och samma företag för städning, fönsterputs och trädgårdsskötsel. Miljögodkända medel och RUT-avdrag. Begär offert idag!",
+    ],
     shortDesc:
       "Din lokala helhetsleverantör inom städ i {area} — allt från hemstäd till kontor och trädgård, under ett och samma tak.",
     subServices: [
@@ -124,6 +132,14 @@ export const SERVICES: Service[] = [
     keywordLower: "hemstäd",
     altKeyword: "Hemstädning",
     icon: Home,
+    rut: "yes",
+    hubIntro:
+      "Hemstädning är den tjänst som ger mest vardagstid tillbaka. Vi städar villor, radhus och lägenheter i Blekinge, Kalmar län och Växjö – veckovis, varannan vecka eller månadsvis – med samma noggranna rutin varje gång. Som privatperson betalar du bara halva arbetskostnaden tack vare RUT-avdraget, som vi drar direkt på fakturan.",
+    metaTemplates: [
+      "Hemstädning i {area} och {district} – veckovis, varannan vecka eller månadsvis. Du betalar halva arbetskostnaden med RUT-avdrag. Begär en kostnadsfri offert!",
+      "Hemstäd i {area} med fast städare och tydlig checklista. Miljögodkända medel, inga dolda avgifter och RUT-avdrag direkt på fakturan. Få offert inom 24 h.",
+      "Behöver du hjälp med hemstäd i {area}? Vi städar lägenheter, radhus och villor efter ditt schema – till halva priset med RUT-avdrag. Begär offert idag!",
+    ],
     shortDesc:
       "Pålitlig och noggrann hemstädning i {area} för privatpersoner, med RUT-avdrag som halverar kostnaden.",
     subServices: [
@@ -215,6 +231,14 @@ export const SERVICES: Service[] = [
     keywordLower: "flyttstäd",
     altKeyword: "Flyttstädning",
     icon: Truck,
+    rut: "yes",
+    hubIntro:
+      "En godkänd flyttstädning är sista steget innan du lämnar över nycklarna – och det steg där flest tvister med hyresvärd eller köpare uppstår. Vi flyttstädar lägenheter och villor i Blekinge, Kalmar län och Växjö enligt en tydlig checklista, med återstädningsgaranti om något skulle anmärkas vid besiktningen och RUT-avdrag direkt på fakturan.",
+    metaTemplates: [
+      "Flyttstädning i {area} med återstädningsgaranti – vi städar tills hyresvärden eller köparen är nöjd. RUT-avdrag på fakturan. Begär kostnadsfri offert!",
+      "Flyttstäd i {area} och {district} enligt besiktningens checklista: kök, vitvaror, badrum och fönster. Garanti och RUT-avdrag ingår. Få offert inom 24 timmar.",
+      "Ska du flytta i {area}? Vi utför godkänd flyttstädning med återstädningsgaranti och fast pris efter offert. Du betalar halva arbetskostnaden med RUT-avdrag.",
+    ],
     shortDesc:
       "Godkänd flyttstädning i {area} med återstädningsgaranti, så att du kan lämna över nycklarna utan oro.",
     subServices: [
@@ -306,6 +330,14 @@ export const SERVICES: Service[] = [
     keywordLower: "kontorsstäd",
     altKeyword: "Kontorsstädning",
     icon: Building2,
+    rut: "no",
+    hubIntro:
+      "Ett rent kontor syns både för kunder och medarbetare. Vi sköter kontorsstädning och lokalvård åt företag i Blekinge, Kalmar län och Växjö – kontor, butiker, mottagningar och mindre verksamhetslokaler – med löpande avtal, fast månadspris och städning på tider som inte stör verksamheten.",
+    metaTemplates: [
+      "Kontorsstädning i {area} för företag – löpande städavtal med fast månadspris och städning före eller efter kontorstid. Kostnadsfri genomgång av er lokal.",
+      "Kontorsstäd i {area} och {district}: kontor, butiker och verksamhetslokaler. Fast kontaktperson, miljögodkända medel och flexibla tider. Begär offert idag!",
+      "Söker ni kontorsstädning i {area}? Vi städar kontor och lokaler dagligen, veckovis eller efter behov – med tydligt avtal och fast pris. Få offert inom 24 h.",
+    ],
     shortDesc:
       "Vi håller kontor, butiker och verksamhetslokaler i {area} rena och välkomnande, på tider som passar er verksamhet.",
     subServices: [
@@ -397,6 +429,14 @@ export const SERVICES: Service[] = [
     keywordLower: "fönsterputs",
     altKeyword: "Fönsterputsning",
     icon: Droplets,
+    rut: "yes",
+    hubIntro:
+      "Rena fönster släpper in mer ljus och gör hela hemmet ljusare. Vi putsar fönster för privatpersoner, bostadsrättsföreningar och företag i Blekinge, Kalmar län och Växjö – insida, utsida, karmar och spröjs – som engångsjobb eller återkommande abonnemang. Privatpersoner betalar halva arbetskostnaden med RUT-avdrag.",
+    metaTemplates: [
+      "Fönsterputsning i {area} – insida, utsida, karmar och spröjs utan ränder. Som engångsjobb eller abonnemang, med RUT-avdrag på fakturan. Begär offert idag!",
+      "Fönsterputs i {area} och {district} för villor, lägenheter och företag. Vi når även höga fönster säkert. Halva arbetskostnaden med RUT. Få offert inom 24 h.",
+      "Stråkfri fönsterputs i {area} – vi putsar 2–4 gånger per år eller när du behöver. Fast pris efter offert och RUT-avdrag för privatpersoner. Kontakta oss!",
+    ],
     shortDesc:
       "Stråkfri fönsterputs i {area}, insida och utsida, för både privatpersoner och företag.",
     subServices: [
@@ -488,6 +528,14 @@ export const SERVICES: Service[] = [
     keywordLower: "storstädning",
     altKeyword: "Storstäd",
     icon: SprayCan,
+    rut: "yes",
+    hubIntro:
+      "En storstädning når de ytor som vardagsstädningen hoppar över: skåp, lister, vitvaror, element och kakelfogar. Vi storstädar hem i Blekinge, Kalmar län och Växjö inför högtider, säsongsskiften eller bara när hemmet behöver ett rejält lyft – med RUT-avdrag som halverar arbetskostnaden.",
+    metaTemplates: [
+      "Storstädning i {area} från golv till tak – skåp, lister, vitvaror och badrum. Du betalar halva arbetskostnaden med RUT-avdrag. Begär en kostnadsfri offert!",
+      "Storstäd i {area} och {district} inför högtider, säsongsskiften eller försäljning. Grundligt, med checklista och RUT-avdrag på fakturan. Få offert inom 24 h.",
+      "Behöver hemmet i {area} ett ordentligt lyft? Vi utför grundlig storstädning med miljögodkända medel och RUT-avdrag för privatpersoner. Begär offert idag!",
+    ],
     shortDesc:
       "Grundlig storstädning i {area} som når de ställen vardagsstädningen missar – skåp, list och svåråtkomliga ytor.",
     subServices: [
@@ -575,6 +623,14 @@ export const SERVICES: Service[] = [
     keywordLower: "trädgårdsskötsel",
     altKeyword: "Trädgårdshjälp",
     icon: Trees,
+    rut: "yes",
+    hubIntro:
+      "En välskött trädgård tar tid – särskilt under växtsäsongen. Vi sköter gräsklippning, häckklippning, ogräsrensning och lövräfsning åt villaägare och föreningar i Blekinge, Kalmar län och Växjö, som säsongsavtal eller enstaka insatser. Privatpersoner betalar halva arbetskostnaden med RUT-avdrag.",
+    metaTemplates: [
+      "Trädgårdsskötsel i {area} – gräsklippning, häckklippning, ogräsrensning och lövräfsning. Säsongsavtal eller enstaka insats, med RUT-avdrag. Begär offert!",
+      "Trädgårdshjälp i {area} och {district}: vi klipper gräs och häck, rensar rabatter och forslar bort avfallet. Halva arbetskostnaden med RUT. Få offert idag.",
+      "Slipp trädgårdsarbetet i {area}. Vi sköter gräsmatta, häckar och rabatter hela säsongen med egna redskap och RUT-avdrag för privatpersoner. Kontakta oss!",
+    ],
     shortDesc:
       "Vi sköter din trädgård i {area} året runt – gräsklippning, häckklippning, ogräsrensning och mer, med RUT-avdrag för privatpersoner.",
     subServices: [
@@ -662,6 +718,14 @@ export const SERVICES: Service[] = [
     keywordLower: "byggstädning",
     altKeyword: "Byggstäd",
     icon: HardHat,
+    rut: "partial",
+    hubIntro:
+      "Efter en renovering eller ett nybygge sitter byggdammet överallt – i skåp, ventilationsdon och fönsterkarmar. Vi utför grovstädning under projektet och finstädning inför besiktning och inflyttning i Blekinge, Kalmar län och Växjö, åt både byggföretag och privatpersoner.",
+    metaTemplates: [
+      "Byggstädning i {area} efter renovering eller nybygge – grovstäd och finstäd inför besiktning. För byggföretag och privatpersoner. Begär en offert idag!",
+      "Byggstäd i {area} och {district}: vi tar bort byggdamm, färgstänk och tejprester från golv, skåp och fönster. Anpassat efter projektet. Få offert idag.",
+      "Snart klara med renoveringen i {area}? Vi bokar in slutstädningen i tid, så att bostaden eller lokalen är redo att användas. Kostnadsfri offert inom 24 h.",
+    ],
     shortDesc:
       "Grundlig byggstädning i {area} efter renovering eller nybygge – vi tar hand om damm, rester och slutstädning.",
     subServices: [
@@ -749,6 +813,14 @@ export const SERVICES: Service[] = [
     keywordLower: "visningsstädning",
     altKeyword: "Visningsstäd",
     icon: KeyRound,
+    rut: "yes",
+    hubIntro:
+      "Första intrycket avgör mycket vid en bostadsförsäljning. Vi visningsstädar lägenheter och villor i Blekinge, Kalmar län och Växjö inför fotografering och visning, med extra fokus på kök, badrum och fönster – bokat efter mäklarens tidsplan och med RUT-avdrag för dig som säljer ditt eget hem.",
+    metaTemplates: [
+      "Visningsstädning i {area} inför fotografering och visning – extra fokus på kök, badrum och fönster. Efter mäklarens schema, med RUT-avdrag. Begär offert!",
+      "Ska du sälja bostaden i {area} eller {district}? Vi visningsstädar så att hemmet gör bästa möjliga intryck på spekulanter. RUT-avdrag på fakturan. Få offert.",
+      "Visningsstäd i {area} med kort varsel – vi gör bostaden ljus, fräsch och redo för bilder och visning. Halva arbetskostnaden med RUT-avdrag. Kontakta oss!",
+    ],
     shortDesc:
       "Vi förbereder bostaden i {area} inför visning, så att den gör bästa möjliga intryck på spekulanter.",
     subServices: [
@@ -836,6 +908,14 @@ export const SERVICES: Service[] = [
     keywordLower: "dödsbostädning",
     altKeyword: "Städning av dödsbo",
     icon: HeartHandshake,
+    rut: "no",
+    hubIntro:
+      "Att ta hand om ett dödsbo är ofta tungt, både känslomässigt och praktiskt. Vi hjälper anhöriga i Blekinge, Kalmar län och Växjö med en varsam och grundlig städning av bostaden inför överlämning, försäljning eller uthyrning – i den takt som känns rätt för familjen och med en tydlig offert innan vi börjar.",
+    metaTemplates: [
+      "Dödsbostädning i {area} – varsam och grundlig städning inför överlämning, visning eller försäljning, i den takt som passar familjen. Kostnadsfri offert.",
+      "Städning av dödsbo i {area} och {district}. Vi möter anhöriga med respekt och lyhördhet och lämnar alltid en tydlig offert innan vi börjar. Kontakta oss.",
+      "Behöver ni hjälp med ett dödsbo i {area}? Vi städar bostaden grundligt och respektfullt inför nästa steg, när det passar er. Vi svarar inom 24 timmar.",
+    ],
     shortDesc:
       "Varsam och respektfull städning av dödsbo i {area}, i den takt och omfattning som passar familjen.",
     subServices: [
@@ -860,8 +940,8 @@ export const SERVICES: Service[] = [
         desc: "Vi bokar in städningen i {area} när det passar familjen, utan onödig stress.",
       },
       {
-        title: "RUT-avdrag där det är tillämpligt",
-        desc: "I vissa fall kan RUT-avdrag användas. Vi hjälper till att reda ut vad som gäller i just ert fall.",
+        title: "Tydlig offert innan vi börjar",
+        desc: "Ni får alltid en kostnadsfri och tydlig offert, så att dödsboet vet exakt vad städningen kommer att kosta.",
       },
     ],
     faqPool: [
@@ -879,7 +959,7 @@ export const SERVICES: Service[] = [
       },
       {
         q: "Kan RUT-avdrag användas vid dödsbostädning?",
-        a: "Det kan variera beroende på situation och vem som är beställare. Hör av dig så går vi igenom vad som gäller för ert dödsbo i {area}.",
+        a: "Nej, ett dödsbo har inte rätt till RUT-avdrag för arbete som utförs efter dödsfallet. Därför lämnar vi alltid en tydlig offert för hela arbetet i {area}, så att ni vet vad det kostar innan vi börjar.",
       },
       {
         q: "Hur snabbt kan ni komma igång?",
@@ -923,6 +1003,14 @@ export const SERVICES: Service[] = [
     keywordLower: "trappstädning",
     altKeyword: "Trapphusstädning",
     icon: Footprints,
+    rut: "no",
+    hubIntro:
+      "Ett rent trapphus höjer trivseln för alla som bor i huset. Vi utför trappstädning åt bostadsrättsföreningar och fastighetsägare i Blekinge, Kalmar län och Växjö – trapphus, entréer, hissar och gemensamma utrymmen – enligt ett fast schema och ett tydligt avtal med styrelsen.",
+    metaTemplates: [
+      "Trappstädning i {area} för bostadsrättsföreningar och fastighetsägare – trapphus, entré, hiss och tvättstuga enligt fast schema. Begär kostnadsfri offert!",
+      "Trapphusstädning i {area} och {district} med fast avtal och kontaktperson för styrelsen. Vi städar varje vecka eller oftare. Få offert inom 24 timmar.",
+      "Söker er förening trappstädning i {area}? Vi håller trapphus och gemensamma ytor rena med tydliga rutiner och samma städare varje gång. Kontakta oss idag!",
+    ],
     shortDesc:
       "Regelbunden trappstädning i {area} för bostadsrättsföreningar och fastighetsägare, med tydligt schema.",
     subServices: [
@@ -1010,6 +1098,14 @@ export const SERVICES: Service[] = [
     keywordLower: "fastighetsskötsel",
     altKeyword: "Fastighetsservice",
     icon: Wrench,
+    rut: "no",
+    hubIntro:
+      "För fastighetsägare och bostadsrättsföreningar är det enklast med en leverantör för flera behov. Vi samlar trappstädning, grönytor, snöskottning och enklare praktiska uppgifter i ett avtal för fastigheter i Blekinge, Kalmar län och Växjö – med en fast kontaktperson och insatser anpassade efter säsong.",
+    metaTemplates: [
+      "Fastighetsskötsel i {area} – trappstädning, grönytor, snöskottning och allservice i ett avtal. För bostadsrättsföreningar och fastighetsägare. Begär offert!",
+      "Fastighetsservice i {area} och {district} med fast kontaktperson och säsongsanpassade insatser, från gräsklippning till halkbekämpning. Få offert inom 24 h.",
+      "Samla städ och utemiljö hos en leverantör i {area}. Vi sköter fastighetens gemensamma ytor året om enligt ett tydligt avtal. Kontakta oss för offert idag!",
+    ],
     shortDesc:
       "Praktisk fastighetsskötsel i {area} – städ, utemiljö och allservice samlat hos en leverantör för fastighetsägare.",
     subServices: [

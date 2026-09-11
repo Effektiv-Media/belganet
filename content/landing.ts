@@ -1,6 +1,8 @@
 import { SERVICES, SERVICE_BY_SLUG } from "./services";
 import { ORTER, ORT_BY_SLUG } from "./orter";
-import type { LandingPageData } from "./types";
+import { isLandingPageIndexed } from "./indexing";
+import type { LandingPageData, Service, Usp } from "./types";
+import { fitTitle } from "@/lib/seo";
 import originalLandingData from "./original/all-landing.json";
 
 type OriginalLanding = {
@@ -23,8 +25,8 @@ type OriginalLanding = {
 const ORIGINAL_LANDING = originalLandingData as Record<string, OriginalLanding>;
 
 /** Maps the original site's slugs (e.g. "stadforetag-ronneby") to our new
- * canonical slugs (e.g. "stadfirma-ronneby") so we can reuse the client's
- * already-approved copy verbatim for those 20 combinations. */
+ * canonical service slugs (e.g. "stadfirma") so we can reuse the client's
+ * already-approved body copy verbatim for those 20 combinations. */
 const ORIGINAL_SERVICE_SLUG_MAP: Record<string, string> = {
   stadforetag: "stadfirma",
   hemstad: "hemstad",
@@ -43,9 +45,9 @@ function originalSlugFor(serviceSlug: string, ortSlug: string): string | null {
 }
 
 /** Universal, non-service-specific USPs recovered from the original site —
- * shown on every landing page (with {area} substituted), matching the
- * client-approved homepage/landing-page copy. */
-const UNIVERSAL_USPS_TEMPLATE = [
+ * shown on every landing page (with {area} substituted). The RUT item is
+ * swapped per service, since B2B services and dödsbo cannot claim RUT. */
+const UNIVERSAL_USPS_TEMPLATE: Usp[] = [
   {
     title: "Erfaren & pålitlig personal",
     desc: "Alla våra städare är noggrant utvalda och erfarna. Vi levererar alltid hög kvalitet i {area}.",
@@ -71,6 +73,27 @@ const UNIVERSAL_USPS_TEMPLATE = [
     desc: "Vi är fullt försäkrade och du kan alltid lita på att vi tar hand om din bostad eller lokal.",
   },
 ];
+
+/** Replacement for the RUT USP on services where RUT does not (always) apply. */
+const NON_RUT_USP: Record<Service["rut"], Usp | null> = {
+  yes: null,
+  partial: {
+    title: "RUT i vissa fall",
+    desc: "Vid privat renovering av din egen bostad kan RUT-avdrag ofta användas. Vi hjälper dig kontrollera vad som gäller.",
+  },
+  no: {
+    title: "Tydligt pris & avtal",
+    desc: "Du får en tydlig offert och, vid löpande uppdrag, ett avtal med fast pris – inga överraskningar på fakturan.",
+  },
+};
+
+const isRutUsp = (u: Usp) => /RUT/i.test(u.title);
+
+function adaptUsps(usps: Usp[], service: Service): Usp[] {
+  const replacement = NON_RUT_USP[service.rut];
+  if (!replacement) return usps;
+  return usps.map((u) => (isRutUsp(u) ? replacement : u));
+}
 
 function fill(template: string, area: string, keywordLower: string): string {
   return template.replaceAll("{area}", area).replaceAll("{keywordLower}", keywordLower);
@@ -98,6 +121,68 @@ function pickRotated<T>(pool: T[], count: number, seed: number): T[] {
   return picked;
 }
 
+/** Title without brand (the root template appends " | Belganet Städ"),
+ * fitted to ~60 chars. Both keyword variants (e.g. flyttstäd +
+ * flyttstädning) go in when they fit. */
+function landingMetaTitle(service: Service, area: string): string {
+  const base = `${service.keyword} i ${area}`;
+  const alt = service.altKeyword.toLowerCase();
+  if (service.slug === "stadfirma") {
+    return fitTitle([
+      `${base} – hemstäd, flyttstäd & fönsterputs`,
+      `${base} – städning med RUT-avdrag`,
+      `${base} – pris & offert`,
+      base,
+    ]);
+  }
+  if (service.rut === "yes") {
+    return fitTitle([
+      `${base} – ${alt} med RUT-avdrag`,
+      `${base} – ${alt} med RUT`,
+      `${base} – pris & offert med RUT`,
+      `${base} – pris & offert`,
+      base,
+    ]);
+  }
+  return fitTitle([`${base} – ${alt}`, `${base} – pris & offert`, base]);
+}
+
+function landingMetaDescription(service: Service, ortIndex: number): string {
+  const ort = ORTER[ortIndex]!;
+  const template = service.metaTemplates[ortIndex % service.metaTemplates.length]!;
+  return template
+    .replaceAll("{area}", ort.name)
+    .replaceAll("{district}", ort.districts[0] ?? ort.name)
+    .replaceAll("{altLower}", service.altKeyword.toLowerCase());
+}
+
+/** "Ditt lokala städföretag i X" used to appear on all 13 pages per ort —
+ * vary it by service so sibling pages don't share an identical H2. */
+function aboutHeadingFor(service: Service, area: string): string {
+  switch (service.slug) {
+    case "stadfirma":
+      return `Din lokala städfirma i ${area}`;
+    case "tradgardsskotsel":
+      return `Din lokala trädgårdshjälp i ${area}`;
+    case "kontorsstad":
+    case "trappstadning":
+    case "fastighetsskotsel":
+      return `En lokal samarbetspartner i ${area}`;
+    case "dodsbostadning":
+      return `Lyhörd hjälp i ${area}`;
+    default:
+      return `${service.altKeyword} i ${area} – lokalt och personligt`;
+  }
+}
+
+function nearbyFor(ortSlug: string) {
+  const ort = ORT_BY_SLUG[ortSlug]!;
+  return ort.nearby.map((n) => ({
+    ...n,
+    slug: ORTER.find((o) => o.name === n.name)?.slug ?? "",
+  }));
+}
+
 export function buildLandingPage(
   serviceSlug: string,
   ortSlug: string,
@@ -109,35 +194,44 @@ export function buildLandingPage(
   const slug = `${serviceSlug}-${ortSlug}`;
   const area = ort.name;
   const ortIndex = ORTER.findIndex((o) => o.slug === ortSlug);
+  const keywordTitle = `${service.keyword} i ${area}`;
 
-  // Reuse the client-approved original copy verbatim where it exists.
+  const shared = {
+    slug,
+    serviceSlug,
+    ortSlug,
+    area,
+    altKeyword: service.altKeyword,
+    rut: service.rut,
+    indexed: isLandingPageIndexed(serviceSlug, ortSlug),
+    // The original site targeted "städföretag"; the URL moved to the
+    // higher-volume "städfirma", so title/H1/meta follow (body copy keeps
+    // "städföretag" as a natural secondary variant).
+    title: keywordTitle,
+    h1: keywordTitle,
+    metaTitle: landingMetaTitle(service, area),
+    metaDescription: landingMetaDescription(service, ortIndex),
+    servicesHeading: `${service.altKeyword} i ${area} – vad ingår?`,
+    aboutHeading: aboutHeadingFor(service, area),
+    intro: fill(service.shortDesc, area, service.keywordLower),
+    localParagraph: ort.colorFact,
+    nearby: nearbyFor(ortSlug),
+  };
+
+  // Reuse the client-approved original body copy verbatim where it exists.
   const legacySlug = originalSlugFor(serviceSlug, ortSlug);
   if (legacySlug) {
     const original = ORIGINAL_LANDING[legacySlug]!;
-    const nearby = ort.nearby.map((n) => ({
-      ...n,
-      slug: ORTER.find((o) => o.name === n.name)?.slug ?? "",
-    }));
     return {
-      slug,
-      serviceSlug,
-      ortSlug,
-      keyword: original.keyword,
-      area: original.area,
-      title: original.title,
-      metaTitle: original.metaTitle,
-      metaDescription: original.metaDescription,
-      h1: original.h1,
+      ...shared,
+      keyword: service.keyword,
       heroSubheading: original.heroSubheading,
-      intro: fill(service.shortDesc, area, service.keywordLower),
-      usps: original.usps,
+      usps: adaptUsps(original.usps, service),
       services: original.services,
       about: original.about,
-      localParagraph: ort.colorFact,
       faqs: original.faqs,
       ctaHeading: original.ctaHeading,
       ctaSubtext: original.ctaSubtext,
-      nearby,
     };
   }
 
@@ -157,10 +251,13 @@ export function buildLandingPage(
     area,
     service.keywordLower,
   );
-  const usps = UNIVERSAL_USPS_TEMPLATE.map((u) => ({
-    title: u.title,
-    desc: fill(u.desc, area, service.keywordLower),
-  }));
+  const usps = adaptUsps(
+    UNIVERSAL_USPS_TEMPLATE.map((u) => ({
+      title: u.title,
+      desc: fill(u.desc, area, service.keywordLower),
+    })),
+    service,
+  );
   const services = service.subServices.map((s) => ({
     title: s.title,
     desc: fill(s.desc, area, service.keywordLower),
@@ -170,31 +267,16 @@ export function buildLandingPage(
     a: fill(f.a, area, service.keywordLower),
   }));
 
-  const nearby = ort.nearby.map((n) => ({
-    ...n,
-    slug: ORTER.find((o) => o.name === n.name)?.slug ?? "",
-  }));
-
   return {
-    slug,
-    serviceSlug,
-    ortSlug,
+    ...shared,
     keyword: service.keyword,
-    area,
-    title: `${service.keyword} i ${area}`,
-    metaTitle: `${service.keyword} i ${area} – Pris & offert | Belganet Städ`,
-    metaDescription: `Letar du efter ${service.keywordLower} i ${area}? Belganet Städ och Allservice erbjuder professionell ${service.keywordLower} med hög kvalitet. RUT-avdrag tillgängligt. Begär offert idag!`,
-    h1: `${service.keyword} i ${area}`,
     heroSubheading,
-    intro: fill(service.shortDesc, area, service.keywordLower),
     usps,
     services,
     about,
-    localParagraph: ort.colorFact,
     faqs,
     ctaHeading: `Boka ${service.keywordLower} i ${area} idag`,
     ctaSubtext,
-    nearby,
   };
 }
 
@@ -204,9 +286,10 @@ export interface LandingPageRef {
   ortSlug: string;
   keyword: string;
   area: string;
+  indexed: boolean;
 }
 
-/** All (service × ort) combinations — the full page set for /landningssidor. */
+/** All (service × ort) combinations — the full page set under /tjanster. */
 export const ALL_LANDING_PAGES: LandingPageRef[] = SERVICES.flatMap((service) =>
   ORTER.map((ort) => ({
     slug: `${service.slug}-${ort.slug}`,
@@ -214,11 +297,10 @@ export const ALL_LANDING_PAGES: LandingPageRef[] = SERVICES.flatMap((service) =>
     ortSlug: ort.slug,
     keyword: service.keyword,
     area: ort.name,
+    indexed: isLandingPageIndexed(service.slug, ort.slug),
   })),
 );
 
-export function getLandingPageBySlug(slug: string): LandingPageData | null {
-  const ref = ALL_LANDING_PAGES.find((p) => p.slug === slug);
-  if (!ref) return null;
-  return buildLandingPage(ref.serviceSlug, ref.ortSlug);
+export function getLandingPage(serviceSlug: string, ortSlug: string): LandingPageData | null {
+  return buildLandingPage(serviceSlug, ortSlug);
 }

@@ -1,11 +1,6 @@
-"use client";
-
 import { Phone } from "lucide-react";
 import { BUSINESS } from "@/lib/site";
-
-function scrollTo(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-}
+import { ScrollButton } from "@/components/shared/ScrollButton";
 
 export function LandingCta({ ctaHeading, ctaSubtext }: { ctaHeading: string; ctaSubtext: string }) {
   return (
@@ -26,13 +21,12 @@ export function LandingCta({ ctaHeading, ctaSubtext }: { ctaHeading: string; cta
           {ctaSubtext}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            type="button"
-            onClick={() => scrollTo("lp-contact-form")}
+          <ScrollButton
+            targetId="lp-contact-form"
             className="px-8 py-4 bg-brand-amber text-white font-bold uppercase tracking-wider text-sm rounded-xl hover:bg-brand-amber-light hover:shadow-xl hover:shadow-brand-amber/30 transition-all duration-300 hover:scale-105 active:scale-95"
           >
             Begär kostnadsfri offert
-          </button>
+          </ScrollButton>
           <a
             href={BUSINESS.phoneHref}
             className="px-8 py-4 border border-white/30 bg-white/5 backdrop-blur-sm text-white font-bold uppercase tracking-wider text-sm rounded-xl hover:bg-white/15 hover:border-white/60 transition-all duration-300 inline-flex items-center justify-center gap-2"

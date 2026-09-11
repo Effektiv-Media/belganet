@@ -16,7 +16,7 @@ export const HOME_FAQS = [
   },
   {
     q: "Vilka områden täcker ni?",
-    a: "Vi är verksamma i Ronneby, Karlskrona, Växjö och Kalmar med omnejd. Är du osäker på om vi täcker ditt område – hör av dig så berättar vi mer.",
+    a: "Vi är verksamma i Ronneby, Karlskrona, Växjö och Kalmar – och fler orter i Blekinge, Kalmar och Kronobergs län: Karlshamn, Sölvesborg, Olofström, Nybro, Emmaboda och Oskarshamn. Är du osäker på om vi täcker ditt område – hör av dig så berättar vi mer.",
   },
   {
     q: "Vad krävs av en flyttstädning?",

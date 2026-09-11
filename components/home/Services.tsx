@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RevealDiv } from "./RevealDiv";
+import { servicePath } from "@/lib/routes";
 
 const HOME_SERVICES = [
   {
@@ -83,10 +84,10 @@ export function Services() {
                     {s.desc}
                   </p>
                   <Link
-                    href={`/landningssidor/${s.slug}-ronneby`}
+                    href={servicePath(s.slug)}
                     className="text-brand-amber font-semibold text-sm uppercase tracking-wider hover:text-brand-amber-light transition-colors self-start"
                   >
-                    Begär offert →
+                    Mer om {s.title.toLowerCase()} →
                   </Link>
                 </div>
               </div>

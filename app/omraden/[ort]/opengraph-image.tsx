@@ -10,7 +10,7 @@ export default async function Image({ params }: { params: Promise<{ ort: string 
 
   return renderOgImage({
     eyebrow: ort ? `${ort.kommun} · ${ort.lan}` : "Belganet Städ och Allservice",
-    title: ort ? `Städfirma i ${ort.name}` : "Belganet Städ och Allservice",
+    title: ort ? `Städning i ${ort.name}` : "Belganet Städ och Allservice",
     subtitle: "Hemstäd · Flyttstäd · Kontorsstäd · Fönsterputs · Trädgård",
   });
 }

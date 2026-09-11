@@ -3,7 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Jsonld } from "@/components/shared/Jsonld";
 import { organizationSchema, websiteSchema, localBusinessSchema } from "@/lib/schema";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_SHORT_NAME, SITE_URL } from "@/lib/site";
 import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
 import "./globals.css";
 
@@ -19,32 +19,33 @@ const playfairDisplay = Playfair_Display({
   display: "swap",
 });
 
+const googleVerification = process.env.GOOGLE_SITE_VERIFICATION;
+
+/**
+ * Site-wide defaults only. Canonical URLs are deliberately NOT set here:
+ * a root-level canonical is inherited by every page that forgets its own,
+ * silently pointing it at the homepage. Each page sets its canonical via
+ * `buildMetadata()`.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} – Professionell städning i Sydsverige`,
-    template: `%s | ${SITE_NAME}`,
+    default: `${SITE_NAME} | Städfirma i Blekinge & Kalmar`,
+    // Short brand keeps page titles within ~60 chars; pages pass their
+    // title WITHOUT a brand suffix.
+    template: `%s | ${SITE_SHORT_NAME}`,
   },
   description:
-    "Vi erbjuder hemstäd, flyttstäd, kontorsstäd, fönsterputs och trädgårdsservice i Ronneby, Karlskrona, Växjö, Kalmar och fler orter i Sydsverige. Kontakta oss idag för en offert!",
-  alternates: {
-    canonical: SITE_URL,
-  },
+    "Hemstäd, flyttstäd, kontorsstäd, fönsterputs och trädgårdsskötsel i Blekinge, Kalmar län och Växjö. RUT-avdrag direkt på fakturan. Begär en kostnadsfri offert!",
   openGraph: {
-    title: SITE_NAME,
-    description:
-      "Professionell städning och allservice i Sydsverige. Hemstäd, flyttstäd, kontorsstäd, fönsterputs och trädgårdsservice.",
-    url: SITE_URL,
     siteName: SITE_NAME,
     locale: "sv_SE",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: SITE_NAME,
-    description:
-      "Professionell städning och allservice i Sydsverige. Hemstäd, flyttstäd, kontorsstäd, fönsterputs och trädgårdsservice.",
   },
+  ...(googleVerification ? { verification: { google: googleVerification } } : {}),
 };
 
 export default function RootLayout({

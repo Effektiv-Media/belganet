@@ -5,6 +5,7 @@ import { Hero } from "@/components/home/Hero";
 import { WhyUs } from "@/components/home/WhyUs";
 import { Services } from "@/components/home/Services";
 import { About } from "@/components/home/About";
+import { Areas } from "@/components/home/Areas";
 import { Faq, HOME_FAQS } from "@/components/home/Faq";
 import { Contact } from "@/components/home/Contact";
 import { Jsonld } from "@/components/shared/Jsonld";
@@ -12,10 +13,11 @@ import { faqPageSchema } from "@/lib/schema";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Belganet Städ och Allservice – Professionell städning i Sydsverige",
+  title: "Belganet Städ och Allservice | Städfirma i Blekinge & Kalmar",
   description:
-    "Vi erbjuder hemstäd, flyttstäd, kontorsstäd, fönsterputs och trädgårdsservice i Ronneby, Karlskrona, Växjö, Kalmar och fler orter i Sydsverige. Kontakta oss idag för en offert!",
+    "Hemstäd, flyttstäd, kontorsstäd, fönsterputs och trädgårdsskötsel i Ronneby, Karlskrona, Växjö, Kalmar och fler orter. RUT-avdrag på fakturan. Begär offert!",
   path: "/",
+  absoluteTitle: true,
 });
 
 export default function HomePage() {
@@ -28,6 +30,7 @@ export default function HomePage() {
         <WhyUs />
         <Services />
         <About />
+        <Areas />
         <Faq />
         <Contact />
       </main>
