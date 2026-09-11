@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette recovered from the original site's compiled CSS. */
+  --color-brand-navy: #090909;
+  --color-brand-navy-dark: #020202;
+  --color-brand-navy-light: #1b1b1b;
+  --color-brand-amber: #e942a2;
+  --color-brand-amber-light: #fc65b6;
+  --color-brand-surface: #f8f3f6;
+  --color-background: #ffffff;
+  --color-foreground: #090909;
+  --color-border: #e4e0e2;
+  --color-muted-foreground: #635b5d;
+
+  --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-brand-surface);
+    color: var(--color-brand-navy);
+  }
+}
+
+@layer components {
+  .section-heading-eyebrow {
+    @apply block text-xs font-bold uppercase tracking-[0.2em] text-brand-amber mb-3 font-sans;
+  }
+
+  .section-heading {
+    @apply font-serif text-3xl md:text-4xl font-bold text-brand-navy leading-tight;
+  }
+
+  .section-subheading {
+    @apply mt-4 text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto font-sans;
+  }
+}
+
