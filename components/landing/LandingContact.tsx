@@ -31,7 +31,7 @@ export function LandingContact({ keyword, area }: { keyword: string; area: strin
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-2">
-            <div className="bg-linear-to-br from-brand-navy to-brand-navy-dark rounded-2xl p-8 h-full text-white shadow-2xl shadow-black/20 border border-white/5">
+            <div className="bg-linear-to-br from-brand-navy to-brand-navy-dark rounded-2xl p-8 h-full text-white shadow-2xl shadow-brand-amber/15 border border-white/5">
               <h3 className="font-serif text-2xl font-bold mb-2">Kontaktuppgifter</h3>
               <p className="text-white/55 text-sm leading-relaxed mb-8 font-sans">
                 Vi finns tillgängliga för att svara på dina frågor och hjälpa dig boka.
@@ -70,7 +70,7 @@ export function LandingContact({ keyword, area }: { keyword: string; area: strin
           </div>
 
           <div className="lg:col-span-3">
-            <div className="bg-background rounded-2xl border border-border p-8 shadow-xl shadow-black/5">
+            <div className="bg-background rounded-2xl border border-border p-8 shadow-xl shadow-brand-amber/8">
               <ContactForm source={`${keyword} i ${area}`} area={area} />
             </div>
           </div>

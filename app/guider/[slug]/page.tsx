@@ -162,7 +162,7 @@ export default async function GuidePage({ params }: PageProps) {
               </div>
             )}
 
-            <div className="p-8 rounded-2xl bg-white border border-border shadow-xl shadow-black/5">
+            <div className="p-8 rounded-2xl bg-white border border-border shadow-xl shadow-brand-amber/8">
               <h2 className="font-serif text-xl font-bold text-brand-navy mb-2">
                 Har du en fråga eller vill ha en offert?
               </h2>

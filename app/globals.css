@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette recovered from the original site's compiled CSS. */
-  --color-brand-navy: #090909;
-  --color-brand-navy-dark: #020202;
-  --color-brand-navy-light: #1b1b1b;
+  /* Brand palette recovered from the original site's compiled CSS, with the
+     dark tones brightened slightly and given a faint plum undertone so they
+     pair better with the brand-amber pink accent. */
+  --color-brand-navy: #14111a;
+  --color-brand-navy-dark: #0a0810;
+  --color-brand-navy-light: #241f2e;
   --color-brand-amber: #e942a2;
   --color-brand-amber-light: #fc65b6;
   --color-brand-surface: #f8f3f6;
   --color-background: #ffffff;
-  --color-foreground: #090909;
+  --color-foreground: #14111a;
   --color-border: #e4e0e2;
   --color-muted-foreground: #635b5d;
 

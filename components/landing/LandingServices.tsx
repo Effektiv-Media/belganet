@@ -40,7 +40,7 @@ export function LandingServices({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.55, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-brand-surface rounded-2xl p-7 border border-border hover:border-brand-amber/40 hover:shadow-xl transition-all duration-300 group"
+              className="bg-brand-surface rounded-2xl p-7 border border-border hover:border-brand-amber/40 hover:shadow-xl hover:shadow-brand-amber/10 transition-all duration-300 group"
             >
               <div className="w-12 h-12 rounded-xl bg-brand-navy flex items-center justify-center mb-5 group-hover:bg-brand-amber transition-colors duration-300">
                 <CheckCircle2

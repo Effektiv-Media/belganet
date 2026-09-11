@@ -53,7 +53,7 @@ export function WhyUs() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {USPS.map((usp, i) => (
             <RevealDiv key={usp.title} delay={i * 0.08}>
-              <div className="h-full p-8 rounded-2xl bg-white border border-border hover:border-brand-amber/40 hover:shadow-lg transition-all duration-300">
+              <div className="h-full p-8 rounded-2xl bg-white border border-border hover:border-brand-amber/40 hover:shadow-lg hover:shadow-brand-amber/10 transition-all duration-300">
                 <div className="w-12 h-12 rounded-xl bg-brand-amber/10 flex items-center justify-center mb-5">
                   <usp.icon size={22} className="text-brand-amber" aria-hidden="true" />
                 </div>

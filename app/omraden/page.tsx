@@ -56,7 +56,7 @@ export default function OmradenIndexPage() {
                 <Link
                   key={ort.slug}
                   href={`/omraden/${ort.slug}`}
-                  className="group flex flex-col p-7 rounded-2xl bg-brand-surface border border-border hover:border-brand-amber/40 hover:shadow-xl transition-all duration-300"
+                  className="group flex flex-col p-7 rounded-2xl bg-brand-surface border border-border hover:border-brand-amber/40 hover:shadow-xl hover:shadow-brand-amber/10 transition-all duration-300"
                 >
                   <div className="w-12 h-12 rounded-xl bg-brand-navy flex items-center justify-center mb-5 group-hover:bg-brand-amber transition-colors duration-300">
                     <MapPin

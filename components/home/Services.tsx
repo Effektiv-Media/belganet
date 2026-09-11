@@ -65,7 +65,7 @@ export function Services() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {HOME_SERVICES.map((s, i) => (
             <RevealDiv key={s.slug} delay={i * 0.06}>
-              <div className="group rounded-2xl overflow-hidden border border-border hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+              <div className="group rounded-2xl overflow-hidden border border-border hover:shadow-xl hover:shadow-brand-amber/10 transition-all duration-300 h-full flex flex-col">
                 <div className="relative h-48 overflow-hidden">
                   <Image
                     src={s.image}

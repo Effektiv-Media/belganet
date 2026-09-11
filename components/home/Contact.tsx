@@ -32,7 +32,7 @@ export function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <RevealDiv className="lg:col-span-2">
-            <div className="bg-linear-to-br from-brand-navy to-brand-navy-dark rounded-2xl p-8 h-full text-white shadow-2xl shadow-black/20 border border-white/5">
+            <div className="bg-linear-to-br from-brand-navy to-brand-navy-dark rounded-2xl p-8 h-full text-white shadow-2xl shadow-brand-amber/15 border border-white/5">
               <h3 className="font-serif text-2xl font-bold mb-2">Kontaktuppgifter</h3>
               <p className="text-white/55 text-sm leading-relaxed mb-8 font-sans">
                 Jag finns tillgänglig för att svara på dina frågor och hjälpa dig
@@ -72,7 +72,7 @@ export function Contact() {
           </RevealDiv>
 
           <RevealDiv delay={0.1} className="lg:col-span-3">
-            <div className="bg-white rounded-2xl border border-border p-8 shadow-xl shadow-black/5">
+            <div className="bg-white rounded-2xl border border-border p-8 shadow-xl shadow-brand-amber/8">
               <ContactForm source="Allmän förfrågan" />
             </div>
           </RevealDiv>

@@ -26,7 +26,7 @@ export function LandingUsps({ usps }: { usps: Usp[] }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.55, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] }}
-                className="bg-background rounded-2xl p-8 border border-border hover:border-brand-amber/40 hover:shadow-xl transition-all duration-300 group"
+                className="bg-background rounded-2xl p-8 border border-border hover:border-brand-amber/40 hover:shadow-xl hover:shadow-brand-amber/10 transition-all duration-300 group"
               >
                 <div className="w-14 h-14 rounded-2xl bg-brand-navy flex items-center justify-center mb-6 group-hover:bg-brand-amber transition-colors duration-300">
                   <Icon

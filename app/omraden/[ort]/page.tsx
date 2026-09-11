@@ -121,7 +121,7 @@ export default async function OrtHubPage({ params }: PageProps) {
                   <Link
                     key={s.slug}
                     href={`/landningssidor/${s.slug}-${ort.slug}`}
-                    className="group flex flex-col p-7 rounded-2xl bg-brand-surface border border-border hover:border-brand-amber/40 hover:shadow-xl transition-all duration-300"
+                    className="group flex flex-col p-7 rounded-2xl bg-brand-surface border border-border hover:border-brand-amber/40 hover:shadow-xl hover:shadow-brand-amber/10 transition-all duration-300"
                   >
                     <div className="w-12 h-12 rounded-xl bg-brand-navy flex items-center justify-center mb-5 group-hover:bg-brand-amber transition-colors duration-300">
                       <s.icon
@@ -195,7 +195,7 @@ export default async function OrtHubPage({ params }: PageProps) {
                   skräddarsytt erbjudande för {ort.name}.
                 </p>
               </div>
-              <div className="bg-white rounded-2xl border border-border p-8 shadow-xl shadow-black/5">
+              <div className="bg-white rounded-2xl border border-border p-8 shadow-xl shadow-brand-amber/8">
                 <ContactForm source={`Allmän förfrågan – ${ort.name}`} area={ort.name} />
               </div>
             </div>

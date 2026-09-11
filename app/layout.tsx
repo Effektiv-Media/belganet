@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Jsonld } from "@/components/shared/Jsonld";
 import { organizationSchema, websiteSchema, localBusinessSchema } from "@/lib/schema";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { MobileStickyCta } from "@/components/layout/MobileStickyCta";
 import "./globals.css";
 
 const inter = Inter({
@@ -51,9 +52,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="sv" className={`${inter.variable} ${playfairDisplay.variable}`}>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased pb-20 md:pb-0">
         <Jsonld data={[organizationSchema(), websiteSchema(), localBusinessSchema()]} />
         {children}
+        <MobileStickyCta />
         <Analytics />
       </body>
     </html>

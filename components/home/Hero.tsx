@@ -18,13 +18,13 @@ export function Hero() {
           priority
           fetchPriority="high"
           sizes="100vw"
-          className="object-cover opacity-40"
+          className="object-cover opacity-95"
         />
         <div className="absolute inset-0 bg-linear-to-b from-brand-navy/70 via-brand-navy/60 to-brand-navy" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl mx-auto text-center">
           <span className="section-heading-eyebrow text-brand-amber">
             Städ &amp; Allservice i Sydsverige
           </span>
@@ -32,12 +32,12 @@ export function Hero() {
             Jag tar hand om din
             <span className="block text-brand-amber mt-2">städning &amp; trädgård</span>
           </h1>
-          <p className="text-white/70 text-lg leading-relaxed max-w-xl mb-8 font-sans">
+          <p className="text-white/70 text-lg leading-relaxed max-w-xl mx-auto mb-8 font-sans">
             Jag på Belganet Städ och Allservice erbjuder professionell hemstäd,
             flyttstäd, kontorsstäd, fönsterputs och trädgårdsservice – alltid med
             omsorg och kvalitet i fokus.
           </p>
-          <div className="flex flex-wrap items-center gap-4 mb-14">
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
             <Link
               href="/#section-5"
               className="px-8 py-4 bg-brand-amber text-white font-bold text-sm uppercase tracking-wider rounded-xl hover:bg-brand-amber-light transition-all hover:scale-105"
@@ -53,24 +53,24 @@ export function Hero() {
             </a>
           </div>
 
-          <dl className="grid grid-cols-3 gap-6 max-w-lg">
+          <dl className="grid grid-cols-3 gap-6 max-w-lg mx-auto">
             <div>
               <dt className="sr-only">Nöjda kunder</dt>
-              <dd className="font-serif text-3xl font-bold text-white">100%</dd>
+              <dd className="font-serif text-3xl font-bold text-brand-amber">100%</dd>
               <p className="text-white/50 text-xs uppercase tracking-wider mt-1 font-sans">
                 Nöjda kunder
               </p>
             </div>
             <div>
               <dt className="sr-only">RUT-avdrag</dt>
-              <dd className="font-serif text-3xl font-bold text-white">RUT</dd>
+              <dd className="font-serif text-3xl font-bold text-brand-amber">RUT</dd>
               <p className="text-white/50 text-xs uppercase tracking-wider mt-1 font-sans">
                 Avdrag möjligt
               </p>
             </div>
             <div>
               <dt className="sr-only">Flexibla tider</dt>
-              <dd className="font-serif text-3xl font-bold text-white">Flex</dd>
+              <dd className="font-serif text-3xl font-bold text-brand-amber">Flex</dd>
               <p className="text-white/50 text-xs uppercase tracking-wider mt-1 font-sans">
                 Tider &amp; upplägg
               </p>

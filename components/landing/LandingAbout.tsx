@@ -100,7 +100,7 @@ export function LandingAbout({
             <button
               type="button"
               onClick={() => scrollTo("lp-contact")}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-brand-navy text-white font-bold uppercase tracking-wider text-sm rounded-xl hover:bg-brand-navy-light hover:shadow-xl hover:shadow-black/20 transition-all duration-300 hover:scale-105 active:scale-95"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-brand-navy text-white font-bold uppercase tracking-wider text-sm rounded-xl hover:bg-brand-navy-light hover:shadow-xl hover:shadow-brand-amber/15 transition-all duration-300 hover:scale-105 active:scale-95"
             >
               Kontakta oss
             </button>
