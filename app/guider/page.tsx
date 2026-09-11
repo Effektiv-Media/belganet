@@ -31,7 +31,7 @@ export default function GuiderIndexPage() {
         ]}
       />
       <div className="min-h-screen bg-background">
-        <PageHeader navItems={[]} ctaHref="/#section-5" />
+        <PageHeader navItems={[]} ctaHref="/#contact-form" />
         <main className="pt-32 pb-24">
           <div className="max-w-5xl mx-auto px-6">
             <div className="mb-4">

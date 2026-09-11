@@ -99,7 +99,7 @@ export function LandingAbout({
             </ul>
             <button
               type="button"
-              onClick={() => scrollTo("lp-contact")}
+              onClick={() => scrollTo("lp-contact-form")}
               className="inline-flex items-center gap-2 px-8 py-4 bg-brand-navy text-white font-bold uppercase tracking-wider text-sm rounded-xl hover:bg-brand-navy-light hover:shadow-xl hover:shadow-brand-amber/15 transition-all duration-300 hover:scale-105 active:scale-95"
             >
               Kontakta oss

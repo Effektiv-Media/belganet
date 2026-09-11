@@ -76,7 +76,7 @@ export function WhyUs() {
             Kontakta oss idag – vi återkommer snabbt med ett personligt erbjudande.
           </p>
           <Link
-            href="/#section-5"
+            href="/#contact-form"
             className="inline-block px-8 py-3.5 bg-brand-navy text-white font-bold text-sm uppercase tracking-wider rounded-xl hover:bg-brand-navy-light transition-colors"
           >
             Begär offert

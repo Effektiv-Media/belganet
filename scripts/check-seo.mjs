@@ -3,7 +3,7 @@
  * Sitemap/canonical/JSON-LD sanity checks against the production build's
  * static HTML output. Run `pnpm build` first.
  */
-import { readFile, readdir } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 const APP_DIR = path.join(process.cwd(), ".next", "server", "app");

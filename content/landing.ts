@@ -108,9 +108,7 @@ export function buildLandingPage(
 
   const slug = `${serviceSlug}-${ortSlug}`;
   const area = ort.name;
-  const serviceIndex = SERVICES.findIndex((s) => s.slug === serviceSlug);
   const ortIndex = ORTER.findIndex((o) => o.slug === ortSlug);
-  const rotationSeed = serviceIndex * 7 + ortIndex * 13;
 
   // Reuse the client-approved original copy verbatim where it exists.
   const legacySlug = originalSlugFor(serviceSlug, ortSlug);

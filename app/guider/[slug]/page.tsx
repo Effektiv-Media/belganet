@@ -92,7 +92,7 @@ export default async function GuidePage({ params }: PageProps) {
         ]}
       />
       <div className="min-h-screen bg-background">
-        <PageHeader navItems={[]} ctaHref="/#section-5" />
+        <PageHeader navItems={[]} ctaHref="#guide-contact-form" />
         <main className="pt-32 pb-24">
           <article className="max-w-3xl mx-auto px-6">
             <div className="mb-6">
@@ -162,7 +162,10 @@ export default async function GuidePage({ params }: PageProps) {
               </div>
             )}
 
-            <div className="p-8 rounded-2xl bg-white border border-border shadow-xl shadow-brand-amber/8">
+            <div
+              id="guide-contact-form"
+              className="p-8 rounded-2xl bg-white border border-border shadow-xl shadow-brand-amber/8 scroll-mt-24"
+            >
               <h2 className="font-serif text-xl font-bold text-brand-navy mb-2">
                 Har du en fråga eller vill ha en offert?
               </h2>

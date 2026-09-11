@@ -39,7 +39,7 @@ export function Hero() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
             <Link
-              href="/#section-5"
+              href="/#contact-form"
               className="px-8 py-4 bg-brand-amber text-white font-bold text-sm uppercase tracking-wider rounded-xl hover:bg-brand-amber-light transition-all hover:scale-105"
             >
               Boka kostnadsfri offert

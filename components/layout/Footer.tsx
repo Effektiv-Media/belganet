@@ -137,7 +137,7 @@ export function Footer() {
               </li>
             </ul>
             <Link
-              href="/#section-5"
+              href="/#contact-form"
               className="mt-6 inline-block px-5 py-2.5 bg-brand-amber text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-brand-amber-light hover:shadow-md hover:shadow-brand-amber/30 transition-all duration-300"
             >
               Boka städning

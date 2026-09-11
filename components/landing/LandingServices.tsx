@@ -57,7 +57,7 @@ export function LandingServices({
         <div className="mt-10 text-center">
           <button
             type="button"
-            onClick={() => scrollTo("lp-contact")}
+            onClick={() => scrollTo("lp-contact-form")}
             className="inline-flex items-center gap-2 px-8 py-4 bg-brand-amber text-white font-bold uppercase tracking-wider text-sm rounded-xl hover:bg-brand-amber-light hover:shadow-xl hover:shadow-brand-amber/30 transition-all duration-300 hover:scale-105 active:scale-95"
           >
             Begär offert

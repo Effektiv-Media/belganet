@@ -88,7 +88,7 @@ export default async function OrtHubPage({ params }: PageProps) {
         ]}
       />
       <div className="min-h-screen bg-background">
-        <PageHeader navItems={NAV_ITEMS} ctaSectionId="hub-contact" />
+        <PageHeader navItems={NAV_ITEMS} ctaSectionId="hub-contact-form" />
         <main>
           <OrtHero ort={ort} />
 
@@ -195,7 +195,10 @@ export default async function OrtHubPage({ params }: PageProps) {
                   skräddarsytt erbjudande för {ort.name}.
                 </p>
               </div>
-              <div className="bg-white rounded-2xl border border-border p-8 shadow-xl shadow-brand-amber/8">
+              <div
+                id="hub-contact-form"
+                className="bg-white rounded-2xl border border-border p-8 shadow-xl shadow-brand-amber/8 scroll-mt-24"
+              >
                 <ContactForm source={`Allmän förfrågan – ${ort.name}`} area={ort.name} />
               </div>
             </div>

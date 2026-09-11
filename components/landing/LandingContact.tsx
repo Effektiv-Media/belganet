@@ -70,7 +70,10 @@ export function LandingContact({ keyword, area }: { keyword: string; area: strin
           </div>
 
           <div className="lg:col-span-3">
-            <div className="bg-background rounded-2xl border border-border p-8 shadow-xl shadow-brand-amber/8">
+            <div
+              id="lp-contact-form"
+              className="bg-background rounded-2xl border border-border p-8 shadow-xl shadow-brand-amber/8 scroll-mt-24"
+            >
               <ContactForm source={`${keyword} i ${area}`} area={area} />
             </div>
           </div>

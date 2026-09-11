@@ -72,7 +72,10 @@ export function Contact() {
           </RevealDiv>
 
           <RevealDiv delay={0.1} className="lg:col-span-3">
-            <div className="bg-white rounded-2xl border border-border p-8 shadow-xl shadow-brand-amber/8">
+            <div
+              id="contact-form"
+              className="bg-white rounded-2xl border border-border p-8 shadow-xl shadow-brand-amber/8 scroll-mt-24"
+            >
               <ContactForm source="Allmän förfrågan" />
             </div>
           </RevealDiv>

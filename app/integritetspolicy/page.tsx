@@ -13,7 +13,7 @@ export const metadata: Metadata = buildMetadata({
 export default function IntegritetspolicyPage() {
   return (
     <div className="min-h-screen bg-background">
-      <PageHeader navItems={[]} ctaHref="/#section-5" />
+      <PageHeader navItems={[]} ctaHref="/#contact-form" />
       <main className="pt-32 pb-24">
         <article className="max-w-2xl mx-auto px-6">
           <span className="section-heading-eyebrow">Integritetspolicy</span>

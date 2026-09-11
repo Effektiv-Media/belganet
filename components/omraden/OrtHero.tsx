@@ -38,7 +38,7 @@ export function OrtHero({ ort }: { ort: Ort }) {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             type="button"
-            onClick={() => scrollTo("hub-contact")}
+            onClick={() => scrollTo("hub-contact-form")}
             className="px-8 py-4 bg-brand-amber text-white font-bold uppercase tracking-wider text-sm rounded-xl hover:bg-brand-amber-light transition-all duration-300 hover:scale-105"
           >
             Begär kostnadsfri offert

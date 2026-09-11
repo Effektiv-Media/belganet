@@ -110,7 +110,7 @@ export default async function LandingPage({ params }: PageProps) {
         ]}
       />
       <div className="min-h-screen bg-background">
-        <PageHeader navItems={NAV_ITEMS} ctaSectionId="lp-contact" />
+        <PageHeader navItems={NAV_ITEMS} ctaSectionId="lp-contact-form" />
         <main>
           <LandingHero h1={data.h1} heroSubheading={data.heroSubheading} />
           <div className="bg-brand-navy/95 py-3 px-6 border-b border-white/5">

@@ -34,7 +34,7 @@ export function MobileNav() {
               </Link>
             ))}
             <Link
-              href="/#section-5"
+              href="/#contact-form"
               onClick={() => setOpen(false)}
               className="mt-4 px-5 py-2.5 bg-brand-amber text-white text-sm font-bold uppercase tracking-wider rounded-lg text-center"
             >

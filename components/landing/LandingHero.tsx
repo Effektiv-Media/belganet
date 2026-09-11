@@ -56,7 +56,7 @@ export function LandingHero({ h1, heroSubheading }: { h1: string; heroSubheading
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             type="button"
-            onClick={() => scrollTo("lp-contact")}
+            onClick={() => scrollTo("lp-contact-form")}
             className="px-8 py-4 bg-brand-amber text-white font-bold uppercase tracking-wider text-sm rounded-xl hover:bg-brand-amber-light hover:shadow-xl hover:shadow-brand-amber/30 transition-all duration-300 hover:scale-105 active:scale-95"
           >
             Begär kostnadsfri offert

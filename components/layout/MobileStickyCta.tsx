@@ -3,23 +3,24 @@
 import { Calendar } from "lucide-react";
 
 /**
- * Fixed bottom CTA bar, mobile only. Scrolls to whichever contact section
- * exists on the current page (homepage, landing page, or ort hub each use a
- * different id), falling back to navigating to the homepage's contact
- * section on pages with no on-page contact form (guides, index pages).
+ * Fixed bottom CTA bar, mobile only. Scrolls straight to whichever contact
+ * *form* exists on the current page (homepage, landing page, ort hub, or
+ * guide each use a different id) rather than just the section it sits in,
+ * falling back to navigating to the homepage's form on pages with no
+ * on-page contact form (index pages).
  */
-const CONTACT_SECTION_IDS = ["section-5", "lp-contact", "hub-contact"];
+const CONTACT_FORM_IDS = ["contact-form", "lp-contact-form", "hub-contact-form", "guide-contact-form"];
 
 export function MobileStickyCta() {
   function handleClick() {
-    for (const id of CONTACT_SECTION_IDS) {
+    for (const id of CONTACT_FORM_IDS) {
       const el = document.getElementById(id);
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });
         return;
       }
     }
-    window.location.href = "/#section-5";
+    window.location.href = "/#contact-form";
   }
 
   return (
